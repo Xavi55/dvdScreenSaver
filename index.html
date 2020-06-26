@@ -30,13 +30,8 @@
             width: 220px;
             height: auto;
             left: -4px;
-            bottom:-4px
-            /*
-                width="220px" height="112px"
-            */
+            bottom:-4px;
         }
-
-
     </style>
     <body>
         <!--Converted from a .txt file-->
@@ -54,36 +49,47 @@
     <script>
         let border=document.getElementById('border')
         let logo=document.getElementById('logo')
-        //
         let displacementX=parseInt(getComputedStyle(logo).width.replace(/px$/, ''))
         let displacementY=parseInt(getComputedStyle(logo).height.replace(/px$/, ''))
+        //go right or up if 1
         let xdir=1
         let ydir=1
+        //growth factor
+        let xdist=5
+        let ydist=2
+        let count=0
 
-        
-        let dist=5
-        
+        var posX=-4
+        var posY=-4
         function move()
         {
             let loop=setInterval(function()
+            {
+                
+                if((xdir && posX+displacementX+1.1 < window.innerWidth) || posX <=-4)                   
                 {
-                    
-                    var posX=parseInt(logo.style.left.replace(/px$/, '')) || -4;
-                    if((xdir && posX+displacementX+1.1 < window.innerWidth) || posX <=-4)                    {
-                        posX+=dist
-                        xdir=1
-                    }
-                    else
-                    {
-                        posX-=dist
-                        xdir=0
-                    }
-                    logo.style.left=posX
-                    console.log('hi')
+                    posX+=xdist
+                    xdir=1
                 }
-            ,25)
+                else
+                {
+                    posX-=xdist
+                    xdir=0
+                }
+                if((ydir && posY+displacementY < window.innerHeight) || posY<-4)
+                {
+                    posY+=ydist
+                    ydir=1
+                }else
+                {
+                    posY-=ydist
+                    ydir=0
+                }
+                logo.style.left=posX
+                logo.style.bottom=posY
+            },25)
         }
-        console.log('d',innerWidth,displacementX.width)
+        //console.log('d',innerWidth,innerHeight,displacementY,displacementX)
         move()
         //https://codepen.io/stezu/pen/cmLrI/?editors=0010
         //http://jsfiddle.net/dMJ2F/1/
