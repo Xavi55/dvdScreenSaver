@@ -65,7 +65,7 @@
         {
             let loop=setInterval(function()
             {
-                
+                //horizontal
                 if((xdir && posX+displacementX+1.1 < window.innerWidth) || posX <=-4)                   
                 {
                     posX+=xdist
@@ -76,7 +76,8 @@
                     posX-=xdist
                     xdir=0
                 }
-                if((ydir && posY+displacementY < window.innerHeight) || posY<-4)
+                //vertical
+                if((ydir && posY+displacementY < window.innerHeight) || posY<=-4)
                 {
                     posY+=ydist
                     ydir=1
@@ -85,11 +86,24 @@
                     posY-=ydist
                     ydir=0
                 }
+                //collision detection
+                if(posX+displacementX+1.1>=window.innerWidth || posX <= -4)
+                {
+                    changeColor()
+                }
+                if(posY+displacementY>=window.innerHeight || posY <= -4)
+                {
+                    changeColor()
+                }
                 logo.style.left=posX
                 logo.style.bottom=posY
             },25)
         }
-        //console.log('d',innerWidth,innerHeight,displacementY,displacementX)
+        function changeColor()
+        {
+            let hue=(Math.floor(Math.random()*300)+1)
+            logo.style.fill=`hsl(${hue},100%,50%)`
+        }
         move()
         //https://codepen.io/stezu/pen/cmLrI/?editors=0010
         //http://jsfiddle.net/dMJ2F/1/
