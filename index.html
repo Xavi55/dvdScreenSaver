@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>404</title>
+        <meta charset="UTF-8">
     </head>
     <style>
         *
@@ -59,8 +60,8 @@
         let ydist=2
         let count=0
 
-        var posX=-4
-        var posY=-4
+        let posX=-4
+        let posY=-4
         function move()
         {
             let loop=setInterval(function()
@@ -95,8 +96,9 @@
                 {
                     changeColor()
                 }
-                logo.style.left=posX
-                logo.style.bottom=posY
+                //add 'px' for firefox??
+                logo.style.left=posX+'px'
+                logo.style.bottom=posY+'px'
             },25)
         }
         function changeColor()
